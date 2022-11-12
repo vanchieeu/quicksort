@@ -1,31 +1,29 @@
 #include <stdio.h>
 
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
-int partion(int *a, int l, int h) {
-    int i = l - 1;
-
-    for (int j = l; j < h; j++) {
-        if (a[j] <= a[h]) {
-            i++;
-            swap(a+i, a+j);
-        }
-    }
-
-    swap(a+i+1, a+h);
-    return i++;
-}
-
-void quickSqort(int *a, int l, int h) {
-    if (l < h) {
-        int pi = partion(a, l, h);
-        quickSqort(a, l, pi - 1);
-        quickSqort(a, pi + 1, h);
-    }
+void quickSort(int a[], int l, int r){
+	int p = a[(l+r)/2];
+	int i = l, j = r;
+	while (i < j){
+		while (a[i] < p){
+			i++;
+		}
+		while (a[j] > p){
+			j--;
+		}
+		if (i <= j){
+			int temp = a[i];
+			a[i] = a[j];
+			a[j] = temp;
+			i++;
+			j--;
+		}
+	}
+	if (i < r){
+		quickSort(a, i, r);
+	}
+	if (l < j){
+		quickSort(a, l, j);
+	}
 }
 
 void coutArray(int *a, int n) {
