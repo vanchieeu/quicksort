@@ -10,7 +10,7 @@ int partion(int *a, int l, int h) {
     int i = l - 1;
 
     for (int j = l; j < h; j++) {
-        if (a[j] < a[h]) {
+        if (a[j] <= a[h]) {
             i++;
             swap(a+i, a+j);
         }
